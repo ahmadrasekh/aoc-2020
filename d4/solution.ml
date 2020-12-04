@@ -9,12 +9,13 @@ let group_passports ls =
     | [] -> (curr::acc) in
   aux [] [] ls
 
+let mk_raw_pair s = Scanf.sscanf s "%3s:%s" (fun k v -> (k, v))
+
 let mk_passport =  
   List.map (String.split_on_char ' ') >> 
   List.flatten >>
   List.map mk_raw_pair
 
-let mk_raw_pair s = Scanf.sscanf s "%3s:%s" (fun k v -> (k, v))
 
 let validate_a ls =
   (List.mem_assoc "byr" ls) && (List.mem_assoc "iyr" ls) && 
