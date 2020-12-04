@@ -10,17 +10,28 @@ let read_file filename =
     close_in chan;
     List.rev !lines
 
+(* other *)
+let (>>) f g x = g(f(x));;
+
+(* lists *)
+let count_list x ls = 
+  List.fold_left (fun acc elem -> if elem=x then acc+1 else acc) 0 ls
+
 (* strings *)
 let strip_last_char  = function
   | "" -> ""
   | _ as str -> String.sub str 0 ((String.length str) - 1)
 
-let count_occurance ch str = 
-    let char_seq = String.to_seq str in
+let count_occurance ch = 
+  String.to_seq >>
+  List.of_seq >>
+  count_list ch
+
+    (* let char_seq = String.to_seq str in
     Seq.fold_left (fun acc c -> if c=ch then acc+1 else acc) 0 char_seq
     (* let rec aux acc = function
       | "" -> acc
-      | hd::tl ->  *)
+      | hd::tl ->  *) *)
 
 (* ints *)
 let in_range (min, max) x =
@@ -38,6 +49,5 @@ let bool_of_int = function
   | 0 -> false
   | _ -> true
 
-(* other *)
-let (>>) f g x = g(f(x));;
+
 
