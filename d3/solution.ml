@@ -33,4 +33,4 @@ let traverse_slope (r, d) =
         (parse_input "input") |> 
         traverse_slope slope
     ) slopes |>
-    (List.fold_left (fun acc x -> acc*x) 1 )
+    list_multiply

@@ -5,10 +5,7 @@ let parse_line str =
   let f min max ch str = ((min, max), ch, str) in
   Scanf.sscanf str "%i-%i %c: %s" f
 
-let parse_input input = 
-  input |>
-  read_file |>
-  List.map parse_line
+let parse_input = read_file >> List.map parse_line
 
 let validate_a (range, ch, str) =  in_range range (count_occurance ch str)
 

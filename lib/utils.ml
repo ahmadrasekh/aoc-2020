@@ -27,6 +27,8 @@ let in_range (min, max) x =
   if min < max then min <= x && x <= max
   else failwith "range format: (min, max) with min < max"
 
+let list_multiply = List.fold_left (fun acc x -> acc * x) 1
+
 (* logic *)
 let int_of_bool = function
   | true -> 1
@@ -38,3 +40,4 @@ let bool_of_int = function
 
 (* other *)
 let (>>) f g x = g(f(x));;
+
