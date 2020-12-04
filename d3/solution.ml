@@ -4,16 +4,14 @@ let parse_input =
   read_file  >>
   List.map (String.to_seq >> List.of_seq)
 
-let get_every_nth_y y ls = 
-  let rec aux ls' i acc = match ls' with
+let get_every_nth_y y = 
+  let rec aux i acc = function
     | [] -> acc
     | hd::tl -> (if (i mod y)=0 then 
-                  aux tl (i+1) (hd::acc)
+                  aux (i+1) (hd::acc) tl
                 else 
-                  aux tl (i+1) acc) in
-(aux ls 0 []) |>
-List.rev |>
-List.tl
+                  aux (i+1) acc tl) in
+(aux 0 []) >> List.rev >> List.tl
 
 let get_every_nth_x x = 
       List.fold_left (
