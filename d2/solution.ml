@@ -7,7 +7,7 @@ let parse_line str =
 
 let parse_input = read_file >> List.map parse_line
 
-let validate_a (range, ch, str) =  in_range range (count_occurance ch str)
+let validate_a (range, ch, str) =  in_range range (count_in_string ch str)
 
 let validate_b ((i, j), ch, str) = 
   let char_sq = str |> String.to_seq |> List.of_seq in
