@@ -21,7 +21,7 @@ let _ =
   List.map mk_group_answer_sets |>
   List.map (fun sets -> 
     List.fold_left 
-      (* (fun s intersect -> ChartSet.union s union)  *)
+      (* (fun s union -> ChartSet.union s union)  *)
       (fun s intersect -> ChartSet.inter s intersect) 
       (List.hd sets) 
       (List.tl sets)
