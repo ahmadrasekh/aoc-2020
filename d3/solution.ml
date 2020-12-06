@@ -26,11 +26,11 @@ let traverse_slope (r, d) =
   List.filter (( = ) '#') >>
   List.length
 
-  let _ =
-    let  slopes = [(1,1); (3, 1); (5, 1);  (7,1);  (1, 2)] in
-    List.map (
-      fun slope ->
-        (parse_input "input") |> 
-        traverse_slope slope
-    ) slopes |>
-    list_multiply
+let _ =
+  let  slopes = [(1,1); (3, 1); (5, 1); (7,1);  (1, 2)] in
+  List.map (
+    fun slope ->
+      (parse_input "input") |> 
+      traverse_slope slope
+  ) slopes |>
+  list_multiply
