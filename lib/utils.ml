@@ -3,12 +3,12 @@ let read_file filename =
   let lines = ref [] in
   let chan = open_in filename in
   try
-    while true; do
+    while true do
       lines := input_line chan :: !lines
-    done; !lines
-  with End_of_file ->
-    close_in chan;
-    List.rev !lines
+    done;
+    !lines (* to keep the type checker happy *)
+  with End_of_file -> close_in chan;
+                      List.rev !lines
 
 (* other *)
 let (>>) f g x = g(f(x));;
