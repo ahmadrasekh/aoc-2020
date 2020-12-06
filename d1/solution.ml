@@ -28,8 +28,8 @@ let solve ~sum_of:sm ~sum:total ~input:input_list =
     | 3 -> sum_of_three total input_list
     | _ -> []
 
-  let _ = 
-    "input" |> 
-    parse_input |> 
-    (fun ls -> solve ~sum_of:3 ~sum:2020 ~input:ls) |>
-    list_multiply
+let _ = 
+  "input" |> 
+  parse_input |> 
+  (fun ls -> solve ~sum_of:3 ~sum:2020 ~input:ls) |>
+  list_multiply
