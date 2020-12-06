@@ -10,7 +10,7 @@ let parse_input =
   read_file >>
   group 
 
-let group_to_set = List.map (
+let mk_group_answer_sets = List.map (
   explode >>
   ChartSet.of_list
 )
@@ -18,7 +18,7 @@ let group_to_set = List.map (
 let _ =
   "input" |>
   parse_input |>
-  List.map group_to_set |>
+  List.map mk_group_answer_sets |>
   List.map (fun sets -> 
     List.fold_left 
       (* (fun s intersect -> ChartSet.union s union)  *)
