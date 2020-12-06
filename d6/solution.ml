@@ -19,7 +19,11 @@ let _ =
   "input" |>
   parse_input |>
   List.map group_to_set |>
-  List.map (fun sets -> List.fold_left (fun s intersect -> ChartSet.inter s intersect) (List.hd sets) (List.tl sets)) |>
+  List.map (fun sets -> 
+    List.fold_left 
+      (fun s intersect -> ChartSet.inter s intersect) 
+      (List.hd sets) 
+      (List.tl sets)
+  ) |>
   List.map ChartSet.cardinal |>
   list_add
-  
