@@ -1,21 +1,24 @@
 #use "../lib/utils.ml"
 #use "./validators.ml"
 
-let parse_input = read_file
 
 let group_passports ls =
   let rec aux curr acc = function
-    | hd::tl -> (if hd = "" then aux [] (curr::acc) tl else aux (hd::curr) acc tl)
-    | [] -> (curr::acc) in
+  | hd::tl -> (if hd = "" then aux [] (curr::acc) tl else aux (hd::curr) acc tl)
+  | [] -> (curr::acc) in
   aux [] [] ls
-
+  
 let mk_raw_pair s = Scanf.sscanf s "%3s:%s" (fun k v -> (k, v))
-
+  
 let mk_passport =  
   List.map (String.split_on_char ' ') >> 
   List.flatten >>
   List.map mk_raw_pair
-
+    
+let parse_input = 
+  read_file >>
+  group_passports >>
+  List.map mk_passport
 
 let validate_a ls =
   (List.mem_assoc "byr" ls) && (List.mem_assoc "iyr" ls) && 
@@ -33,7 +36,5 @@ let validate_a ls =
 let x =
   "input" |>
   parse_input |>
-  group_passports |> 
-  List.map mk_passport |>
   List.map validate_b |>
-  count_list true
+  count_in_list true
