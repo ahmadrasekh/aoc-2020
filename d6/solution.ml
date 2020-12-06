@@ -8,7 +8,7 @@ module ChartSet = Set.Make(
 
 let parse_input =
   read_file >>
-  group 
+  group ""
 
 let mk_group_answer_sets = List.map (
   explode >>
