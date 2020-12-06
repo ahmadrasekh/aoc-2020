@@ -29,11 +29,17 @@ let rec split_at n acc l =
 let strip_last_char  = function
   | "" -> ""
   | _ as str -> String.sub str 0 ((String.length str) - 1)
+  
+let explode = 
+  String.to_seq >>
+  List.of_seq
 
 let count_in_string ch = 
-  String.to_seq >>
-  List.of_seq >>
+  explode >>
   count_in_list ch
+
+let string_fold f a str = 
+  List.fold_left f a (explode str)  
 
 (* ints *)
 let in_range (min, max) x =
@@ -41,6 +47,8 @@ let in_range (min, max) x =
   else failwith "range format: (min, max) with min < max"
 
 let list_multiply = List.fold_left (fun acc x -> acc * x) 1
+
+let list_add = List.fold_left (fun acc x -> acc + x) 0
 
 (* logic *)
 let int_of_bool = function
@@ -51,5 +59,11 @@ let bool_of_int = function
   | 0 -> false
   | _ -> true
 
+(* input parsers *)
+let group ls =
+  let rec aux curr acc = function
+  | hd::tl -> (if hd = "" then aux [] (curr::acc) tl else aux (hd::curr) acc tl)
+  | [] -> (curr::acc) in
+  aux [] [] ls
 
 
