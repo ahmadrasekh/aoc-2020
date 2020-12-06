@@ -33,7 +33,7 @@ let validate_a ls =
   (validate_hcl (List.assoc "hcl" ls)) && (validate_ecl (List.assoc "ecl" ls)) &&
   (validate_pid (List.assoc "pid" ls))
 
-let x =
+let _ =
   "input" |>
   parse_input |>
   List.map validate_b |>
