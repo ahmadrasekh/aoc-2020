@@ -14,24 +14,26 @@ let read_file filename =
 let (>>) f g x = g(f(x));;
 
 (* lists *)
-let count_list x ls = 
+let count_in_list x ls = 
   List.fold_left (fun acc elem -> if elem=x then acc+1 else acc) 0 ls
+
+let rec split_at n acc l =
+  if n = 0 then 
+    (List.rev acc, l) 
+  else
+    match l with
+      | [] -> (List.rev acc, [])
+      | h :: t -> split_at (n-1) (h :: acc) t
 
 (* strings *)
 let strip_last_char  = function
   | "" -> ""
   | _ as str -> String.sub str 0 ((String.length str) - 1)
 
-let count_occurance ch = 
+let count_in_string ch = 
   String.to_seq >>
   List.of_seq >>
-  count_list ch
-
-    (* let char_seq = String.to_seq str in
-    Seq.fold_left (fun acc c -> if c=ch then acc+1 else acc) 0 char_seq
-    (* let rec aux acc = function
-      | "" -> acc
-      | hd::tl ->  *) *)
+  count_in_list ch
 
 (* ints *)
 let in_range (min, max) x =
