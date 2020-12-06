@@ -60,9 +60,9 @@ let bool_of_int = function
   | _ -> true
 
 (* input parsers *)
-let group ls =
+let group delim ls =
   let rec aux curr acc = function
-  | hd::tl -> (if hd = "" then aux [] (curr::acc) tl else aux (hd::curr) acc tl)
+  | hd::tl -> (if hd = delim then aux [] (curr::acc) tl else aux (hd::curr) acc tl)
   | [] -> (curr::acc) in
   aux [] [] ls
 
