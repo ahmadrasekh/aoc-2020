@@ -79,8 +79,9 @@ let remove words =
 let split delims = 
   let bundle = String.concat "\\|" delims in
   let d = Printf.sprintf "%s*\\(%s\\)%s*" white_space bundle white_space in
-  Str.split (Str.regexp d) >>
-  List.map String.trim
+  Str.split (Str.regexp d) 
+  (* >>
+  List.map String.trim *)
 
 (* ================================================== *)
 (* ints *)
