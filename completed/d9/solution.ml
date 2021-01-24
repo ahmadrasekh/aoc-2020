@@ -38,7 +38,7 @@ let find_contiguous n ls =
   
 let hhd ls = List.nth ls ((List.length ls)-1)
 
-let rec split_at n acc l =
+let rec split_list_at_index n acc l =
   if n = 0 then (List.rev acc, l) else
   match l with
   | [] -> (List.rev acc, [])
@@ -48,7 +48,7 @@ let _ =
   let input = "input" |> parse_input  in
   input |> 
   (fun ls -> 
-    let (preamble, (hd::tl)) = split_at 25 [] ls in
+    let (preamble, (hd::tl)) = split_list_at_index 25 [] ls in
     test preamble hd tl
   ) |>
   (fun x -> find_contiguous x input) |>

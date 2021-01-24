@@ -24,12 +24,12 @@ let quantify s = (Scanf.sscanf s "%i %[a-zA-Z0-9' ']") (fun x s -> (x,s))
 let parse_input =
   read_file >>
   List.map (remove ["bags"; "bag"; "\\."]) >>
-  List.map (split ["contains"; "contain"])
+  List.map (split_str_at_delims ["contains"; "contain"])
    >>
   List.map (fun x ->  (
                         List.hd x,
                         (List.tl x) |>
-                        List.map (split [","]) |>
+                        List.map (split_str_at_delims [","]) |>
                         List.flatten
                       ))
 

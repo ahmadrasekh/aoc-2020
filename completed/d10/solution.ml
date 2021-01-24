@@ -30,11 +30,15 @@ let _ =
   "input" |>
   parse_input |>
   List.sort compare |>
-
-    (* solve |>
-    (fun (x,_,z) -> x*z) *)
   partition |>
   List.map List.rev |>
-  List.rev 
+  List.rev |>
+  List.map (List.length) |>
+  List.map (fun x -> match x with 
+  | 1 | 2 -> 1
+  | 3 -> 2
+  | 4 -> 4
+  | 5 -> 7) |>
+  list_multiply
 (*  List.filter (fun partition -> (List.length partition)>2 ) *)
   (* |> (fun ls -> (list_add ls) / (List.length ls)) *)

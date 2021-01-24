@@ -4,7 +4,7 @@ let parse_input =
   read_file >>
   List.map String.to_seq >>
   List.map List.of_seq >>
-  List.map (split_at 7 [])
+  List.map (split_list_at_index 7 [])
 
 let calc =
   let rec aux (lower, upper) = function
